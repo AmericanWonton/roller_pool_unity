@@ -84,3 +84,4 @@ Thumbs.db.meta
 
 # VS Code
 *.vscode
+roller_pool/roller_pool/ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json
