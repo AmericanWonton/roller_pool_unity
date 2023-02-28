@@ -11,6 +11,7 @@ public class CameraManager : MonoBehaviour
 
     private void Awake()
     {
+        //Get the transform of the player
         targetTransform = FindObjectOfType<PlayerManager>().transform;
     }
     public void FollowTarget()

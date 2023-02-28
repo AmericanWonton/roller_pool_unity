@@ -6,10 +6,12 @@ public class PlayerManager : MonoBehaviour
 {
     /* This script is used to handle all functionality for our player */
     InputManager inputManager;
+    CameraManager cameraManager;
     PlayerLocomotion playerLocomotion;
     private void Awake()
     {
         inputManager = GetComponent<InputManager>();
+        cameraManager = FindObjectOfType<CameraManager>();
         playerLocomotion = GetComponent<PlayerLocomotion>();
     }
 
@@ -24,4 +26,11 @@ public class PlayerManager : MonoBehaviour
     {
         playerLocomotion.HandleAllMovement();
     }
+
+    /*  This calls AFTER the frame has ended */
+    private void LateUpdate()
+    {
+        cameraManager.FollowTarget();
+    }
+
 }
