@@ -268,6 +268,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 559333661494327734, guid: 40b87421868720c4bbb50a6618a467f4, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1862601332163300355, guid: 40b87421868720c4bbb50a6618a467f4, type: 3}
       propertyPath: m_Name
       value: Player
@@ -563,7 +567,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1813958806}
   m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
-  m_LocalPosition: {x: 0, y: 2, z: -6.25}
+  m_LocalPosition: {x: 0, y: 2.8411617, z: -9.389259}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -701,12 +705,12 @@ MonoBehaviour:
   cameraTransform: {fileID: 0}
   collisionLayers:
     serializedVersion: 2
-    m_Bits: 193
-  cameraInterpolateTime: 0.2
-  cameraCollisionOffset: 0.2
-  minimumCollisionOffset: 0.2
-  cameraCollisionRadius: 0.2
-  cameraFollowSpeed: 0.2
+    m_Bits: 129
+  cameraInterpolateTime: 0.1
+  cameraCollisionOffset: 0.4
+  minimumCollisionOffset: 0.1
+  cameraCollisionRadius: 0.1
+  cameraFollowSpeed: 0.05
   cameraLookSpeed: 0.5
   cameraPivotSpeed: 0.5
   lookAngle: 0

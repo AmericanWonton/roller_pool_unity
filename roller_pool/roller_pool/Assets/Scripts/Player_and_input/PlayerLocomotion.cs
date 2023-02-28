@@ -47,8 +47,9 @@ public class PlayerLocomotion : MonoBehaviour
         
         We start by getting the forward movement,(it can be none, if character isn't pressing up).
         Then, we get right with 'forward movment' plus 'right movement'  */
-        moveDirection = cameraObject.forward * inputManager.verticalInput;
-        moveDirection = moveDirection + cameraObject.right * inputManager.horizontalInput;
+        moveDirection = (cameraObject.forward * inputManager.verticalInput) + (cameraObject.right * inputManager.horizontalInput);
+        //moveDirection = cameraObject.forward * inputManager.verticalInput;
+        //moveDirection = moveDirection + cameraObject.right * inputManager.horizontalInput;
         //All this does is keeps the direction the same, but puts the length to 1
         //moveDirection.Normalize();
         //We want our character to jump, to y is kept in
@@ -56,7 +57,7 @@ public class PlayerLocomotion : MonoBehaviour
         //moveDirection = moveDirection * movementSpeed;
 
         Vector3 movementVelocity = moveDirection;
-        playerRigidBody.AddForce(movementVelocity * movementSpeed * inputManager.verticalInput);
+        playerRigidBody.AddForce(movementVelocity * movementSpeed);
         //playerRigidBody.velocity = movementVelocity;
     }
 
@@ -85,7 +86,8 @@ public class PlayerLocomotion : MonoBehaviour
         We want to rotate at a contstant rate */
         Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime); //Rotation between point a and b
 
-        transform.rotation = playerRotation;
+        /* We can un-comment this for other games...*/
+        //transform.rotation = playerRotation;
     }
 
     /* Funciton for handling jumping */

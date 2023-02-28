@@ -13,11 +13,11 @@ public class CameraManager : MonoBehaviour
     private float defaultPosition; 
     private Vector3 cameraFollowVelocity = Vector3.zero;
     private Vector3 cameraVectorPosition;
-    public float cameraInterpolateTime = 0.2f;
-    public float cameraCollisionOffset = 0.2f; //How much the camera will jump off of objects it's colliding with
-    public float minimumCollisionOffset = 0.2f;
-    public float cameraCollisionRadius = 0.2f;
-    public float cameraFollowSpeed = 0.2f;
+    public float cameraInterpolateTime = 0.1f;
+    public float cameraCollisionOffset = 0.4f; //How much the camera will jump off of objects it's colliding with
+    public float minimumCollisionOffset = 0.1f;
+    public float cameraCollisionRadius = 0.1f;
+    public float cameraFollowSpeed = 0.5f;
     public float cameraLookSpeed = 2.0f;
     public float cameraPivotSpeed = 2.0f;
 
@@ -43,17 +43,24 @@ public class CameraManager : MonoBehaviour
         HandleCameraCollisions();
     }
 
-    /* This is used for having the camear follow the player */
+    /* This is used for having the camera follow the player */
     private void FollowTarget()
     {
         /*
         Used to move something 'softly' from one location to another...
         like a camera to a player. So, every frame, our this will be called to move our camera to our player's position
         */
+        /*
         Vector3 targetPosition = Vector3.SmoothDamp
         (transform.position, targetTransform.position, ref cameraFollowVelocity, cameraFollowSpeed);
+        */
+        Vector3 adjusted_targetTransform = new Vector3(targetTransform.position.x, targetTransform.position.y, (targetTransform.position.z));
+        Vector3 targetPosition = Vector3.SmoothDamp
+        (transform.position, adjusted_targetTransform, ref cameraFollowVelocity, cameraFollowSpeed);
 
         transform.position = targetPosition;
+
+        //transform.position = new Vector3(targetPosition.x, targetPosition.y, (targetPosition.z + 0.5f));
     }
 
     /* used for rotating the camera */
@@ -99,7 +106,7 @@ public class CameraManager : MonoBehaviour
         direction.Normalize();
 
         /* spheracast creates a sphere around an object.
-        It creates this with a radius of cameraCollisionRadius. It firess it in the
+        It creates this with a radius of cameraCollisionRadius. It fires it in the
         direction we made above, we use this RayCast 'hit' variable to store what this 
         cast hit. We can do stuff with it*/
         if (Physics.SphereCast
