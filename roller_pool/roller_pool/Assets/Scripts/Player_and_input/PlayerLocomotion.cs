@@ -6,12 +6,14 @@ public class PlayerLocomotion : MonoBehaviour
 {
     InputManager inputManager;
 
-    Vector3 moveDirection;
+    public Vector3 moveDirection;
     Transform cameraObject;
 
-    private Rigidbody playerRigidBody;
+    public Rigidbody playerRigidBody;
+    public bool isOnGround = true;
     public float movementSpeed = 5.0f;
     public float rotationSpeed = 15.0f;
+    public float jumpForceModifier = 1500.0f;
 
     private void Awake()
     {
@@ -21,11 +23,21 @@ public class PlayerLocomotion : MonoBehaviour
         cameraObject = Camera.main.transform;
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
+        {
+            playerRigidBody.AddForce(Vector3.up * jumpForceModifier, ForceMode.Impulse);
+            isOnGround = false;
+        }
+    }
+
     /* This handles all movement for our player */
     public void HandleAllMovement()
     {
         HandleMovement();
         HandleRotation();
+        HandleJumping();
     }
     //Handles general movement left/right and up/down
     private void HandleMovement() 
@@ -38,13 +50,14 @@ public class PlayerLocomotion : MonoBehaviour
         moveDirection = cameraObject.forward * inputManager.verticalInput;
         moveDirection = moveDirection + cameraObject.right * inputManager.horizontalInput;
         //All this does is keeps the direction the same, but puts the length to 1
-        moveDirection.Normalize();
-        //We don't want our character to walk straight up in the air...
-        moveDirection.y = 0;
-        moveDirection = moveDirection * movementSpeed;
+        //moveDirection.Normalize();
+        //We want our character to jump, to y is kept in
+        //moveDirection.y = 0;
+        //moveDirection = moveDirection * movementSpeed;
 
         Vector3 movementVelocity = moveDirection;
-        playerRigidBody.velocity = movementVelocity;
+        playerRigidBody.AddForce(movementVelocity * movementSpeed * inputManager.verticalInput);
+        //playerRigidBody.velocity = movementVelocity;
     }
 
     //Handles Rotation...not sure if needed for rollerpool
@@ -74,4 +87,27 @@ public class PlayerLocomotion : MonoBehaviour
 
         transform.rotation = playerRotation;
     }
+
+    /* Funciton for handling jumping */
+    public void HandleJumping()
+    {
+        /*
+        if (inputManager.jumpInput == true && isOnGround == true)
+        {
+            Debug.Log("We're jumping...");
+            inputManager.jumpInput = false;
+            isOnGround = false;
+            playerRigidBody.AddForce(Vector3.up * jumpForceModifier, ForceMode.Impulse);
+        }
+        */
+    }
+
+    /* Detect to see if the player has collided with the ground to prevent jumping */
+    private void OnCollisionEnter(Collision collision)
+    {
+        inputManager.jumpInput = true;
+        isOnGround = true;
+    }
+
+
 }

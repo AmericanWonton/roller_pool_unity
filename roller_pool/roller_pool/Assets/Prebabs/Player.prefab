@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 6277755824947221551}
   - component: {fileID: 5769901194660744716}
   - component: {fileID: 559333661494327734}
+  - component: {fileID: 2787017660442937600}
   - component: {fileID: 8261992678775846591}
   - component: {fileID: 5718495963777088200}
-  - component: {fileID: 2787017660442937600}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -117,6 +117,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2787017660442937600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862601332163300355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e74acdd297644484b9c3e71ef1051a82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerRigidBody: {fileID: 559333661494327734}
+  isOnGround: 1
+  movementSpeed: 5
+  rotationSpeed: 15
+  jumpForceModifier: 15
 --- !u!114 &8261992678775846591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,8 +147,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movement: {x: 0, y: 0}
+  cameraInput: {x: 0, y: 0}
+  cameraInputX: 0
+  cameraInputY: 0
   verticalInput: 0
   horizontalInput: 0
+  jumpInput: 1
 --- !u!114 &5718495963777088200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,17 +165,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dffa5d9ef474a164d8c94d5236a11198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2787017660442937600
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1862601332163300355}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e74acdd297644484b9c3e71ef1051a82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 5
-  rotationSpeed: 15

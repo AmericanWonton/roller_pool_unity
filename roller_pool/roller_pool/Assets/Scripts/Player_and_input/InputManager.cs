@@ -5,6 +5,7 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     PlayerControls playerControls;
+    PlayerLocomotion playerLocomotion;
     public Vector2 movement;
     public Vector2 cameraInput;
 
@@ -13,6 +14,7 @@ public class InputManager : MonoBehaviour
 
     public float verticalInput;
     public float horizontalInput;
+    public bool jumpInput = true;
 
     /* When the game object attached to this script is enabled, 
     we will be doing logic */
@@ -25,9 +27,12 @@ public class InputManager : MonoBehaviour
             /* If you move any of those keys, those values will be fed to 'movement' and 'camerainput' variables */
             playerControls.PlayerMovement.Movement.performed += i => movement = i.ReadValue<Vector2>();
             playerControls.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
+            /* Jump Button Controls */
+            playerControls.PlayerActions.Jump.performed += i => jumpInput = true;
         }
 
         playerControls.Enable();
+
     }
 
     //If our controller input is disabled, we turn off player controls
@@ -39,7 +44,7 @@ public class InputManager : MonoBehaviour
     public void HandleAllInputs()
     {
         HandleMovementInput();
-        //Handle Jump INput()
+        HandleJumpInput();
         //Handle Start Menu Input();
     }
     private void HandleMovementInput(){
@@ -50,5 +55,15 @@ public class InputManager : MonoBehaviour
         /* Camera Movement */
         cameraInputX = cameraInput.x;
         cameraInputY = cameraInput.y;
+    }
+
+    /* Handles Jumping */
+    private void HandleJumpInput()
+    {
+        if (jumpInput == true)
+        {
+            /* We don't want to jump twice, set this to false */
+            jumpInput = false;
+        }
     }
 }
