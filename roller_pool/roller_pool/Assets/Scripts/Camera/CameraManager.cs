@@ -8,7 +8,15 @@ public class CameraManager : MonoBehaviour
     //Object our camera will follow
     public Transform targetTransform;
     public Transform cameraPivot; //The object the camera uses to pivot 
+    public Transform cameraTransform; //The transform of the actual camera obejct in the scene
+    public LayerMask collisionLayers; //The layers we want our camera to collide with
+    private float defaultPosition; 
     private Vector3 cameraFollowVelocity = Vector3.zero;
+    private Vector3 cameraVectorPosition;
+    public float cameraInterpolateTime = 0.2f;
+    public float cameraCollisionOffset = 0.2f; //How much the camera will jump off of objects it's colliding with
+    public float minimumCollisionOffset = 0.2f;
+    public float cameraCollisionRadius = 0.2f;
     public float cameraFollowSpeed = 0.2f;
     public float cameraLookSpeed = 2.0f;
     public float cameraPivotSpeed = 2.0f;
@@ -23,6 +31,8 @@ public class CameraManager : MonoBehaviour
         //Get the transform of the player
         targetTransform = FindObjectOfType<PlayerManager>().transform;
         inputManager = FindObjectOfType<InputManager>();
+        cameraTransform = Camera.main.transform;
+        defaultPosition = cameraTransform.localPosition.z;
     }
 
     /* Handles all movement inputs of the camera */
@@ -30,6 +40,7 @@ public class CameraManager : MonoBehaviour
     {
         FollowTarget();
         RotateCamera();
+        HandleCameraCollisions();
     }
 
     /* This is used for having the camear follow the player */
@@ -48,6 +59,9 @@ public class CameraManager : MonoBehaviour
     /* used for rotating the camera */
     private void RotateCamera()
     {
+        Vector3 rotation;
+        Quaternion targetRotation;
+
         lookAngle = lookAngle + (inputManager.cameraInputX * cameraLookSpeed);
         pivotAngle = pivotAngle - (inputManager.cameraInputY * cameraPivotSpeed);
 
@@ -60,9 +74,9 @@ public class CameraManager : MonoBehaviour
         3.) Does calculation to get the rotation of the last rotation to the rotation we want to 
         rotate to
         */
-        Vector3 rotation = Vector3.zero;
+        rotation = Vector3.zero;
         rotation.y = lookAngle;
-        Quaternion targetRotation = Quaternion.Euler(rotation);
+        targetRotation = Quaternion.Euler(rotation);
         transform.rotation = targetRotation;
 
         rotation = Vector3.zero;
@@ -73,5 +87,38 @@ public class CameraManager : MonoBehaviour
         rotation, not the rotation in the world space */
         cameraPivot.localRotation = targetRotation;
 
+    }
+    
+    /* Handles camera collisions. This will
+    push the camera forward or backward if it hits an object */
+    private void HandleCameraCollisions()
+    {
+        float targetPosition = defaultPosition;
+        RaycastHit hit;
+        Vector3 direction = cameraTransform.position - cameraPivot.position;
+        direction.Normalize();
+
+        /* spheracast creates a sphere around an object.
+        It creates this with a radius of cameraCollisionRadius. It firess it in the
+        direction we made above, we use this RayCast 'hit' variable to store what this 
+        cast hit. We can do stuff with it*/
+        if (Physics.SphereCast
+        (cameraPivot.transform.position, cameraCollisionRadius, direction, 
+        out hit, Mathf.Abs(targetPosition), collisionLayers))
+        {   
+            /* This is the distance between our camera pivot position and the thing 
+            that we hit */
+            float distance = Vector3.Distance(cameraPivot.position, hit.point);
+            targetPosition =- (distance - cameraCollisionOffset);
+        }
+
+
+        if (Mathf.Abs(targetPosition) < minimumCollisionOffset)
+        {
+            targetPosition = targetPosition - minimumCollisionOffset;
+        }
+
+        cameraVectorPosition.z = Mathf.Lerp(cameraTransform.localPosition.z, targetPosition, cameraInterpolateTime);
+        cameraTransform.localPosition = cameraVectorPosition;
     }
 }
