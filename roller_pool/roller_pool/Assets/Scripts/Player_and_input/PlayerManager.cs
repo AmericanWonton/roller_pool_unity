@@ -30,7 +30,7 @@ public class PlayerManager : MonoBehaviour
     /*  This calls AFTER the frame has ended */
     private void LateUpdate()
     {
-        cameraManager.FollowTarget();
+        cameraManager.HandleAllCameraMovement();
     }
 
 }

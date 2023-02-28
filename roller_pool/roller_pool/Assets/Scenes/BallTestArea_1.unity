@@ -812,7 +812,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTransform: {fileID: 0}
+  cameraPivot: {fileID: 614723831}
   cameraFollowSpeed: 0.2
+  cameraLookSpeed: 0.5
+  cameraPivotSpeed: 0.5
+  lookAngle: 0
+  pivotAngle: 0
+  minimumPivotAngle: -25
+  maximumPivotAngle: 30
 --- !u!4 &1968536259
 Transform:
   m_ObjectHideFlags: 0

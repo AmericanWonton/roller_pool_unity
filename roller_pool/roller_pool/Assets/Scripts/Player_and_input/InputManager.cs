@@ -6,6 +6,10 @@ public class InputManager : MonoBehaviour
 {
     PlayerControls playerControls;
     public Vector2 movement;
+    public Vector2 cameraInput;
+
+    public float cameraInputX;
+    public float cameraInputY;
 
     public float verticalInput;
     public float horizontalInput;
@@ -18,8 +22,9 @@ public class InputManager : MonoBehaviour
         {
             playerControls = new PlayerControls();
 
-
+            /* If you move any of those keys, those values will be fed to 'movement' and 'camerainput' variables */
             playerControls.PlayerMovement.Movement.performed += i => movement = i.ReadValue<Vector2>();
+            playerControls.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
         }
 
         playerControls.Enable();
@@ -38,7 +43,12 @@ public class InputManager : MonoBehaviour
         //Handle Start Menu Input();
     }
     private void HandleMovementInput(){
+        /* Charater movement */
         verticalInput = movement.y;
         horizontalInput = movement.x;
+
+        /* Camera Movement */
+        cameraInputX = cameraInput.x;
+        cameraInputY = cameraInput.y;
     }
 }
