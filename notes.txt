@@ -1,0 +1,4 @@
+Dynamic Friction = Sliding across the ground while sliding
+
+Static Friction = friciton when object starts moving
+

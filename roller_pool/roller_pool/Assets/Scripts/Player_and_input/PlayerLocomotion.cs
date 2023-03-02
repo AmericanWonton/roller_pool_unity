@@ -11,9 +11,9 @@ public class PlayerLocomotion : MonoBehaviour
 
     public Rigidbody playerRigidBody;
     public bool isOnGround = true;
-    public float movementSpeed = 5.0f;
+    public float movementSpeed = 8.0f;
     public float rotationSpeed = 15.0f;
-    public float jumpForceModifier = 1500.0f;
+    public float jumpForceModifier = 5.0f;
 
     private void Awake()
     {
