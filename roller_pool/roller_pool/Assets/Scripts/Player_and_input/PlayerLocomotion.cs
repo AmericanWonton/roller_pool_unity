@@ -57,7 +57,12 @@ public class PlayerLocomotion : MonoBehaviour
         //moveDirection = moveDirection * movementSpeed;
 
         Vector3 movementVelocity = moveDirection;
-        playerRigidBody.AddForce(movementVelocity * movementSpeed);
+        
+        /* Only add force if the player is NOT in the air...*/
+        if (isOnGround)
+        {
+            playerRigidBody.AddForce(movementVelocity * movementSpeed);
+        }
         //playerRigidBody.velocity = movementVelocity;
     }
 
