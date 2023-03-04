@@ -4,20 +4,28 @@ using UnityEngine;
 
 public class PlayerLocomotion : MonoBehaviour
 {
-    public Vector3 playerCurrentSpeed;
     InputManager inputManager;
+    PhysicsHelperPlayer physicsHelperPlayer;
 
     public Vector3 moveDirection;
     Transform cameraObject;
 
     public Rigidbody playerRigidBody;
     public bool isOnGround = true;
-    public float movementSpeed = 8.0f;
+    public float movementSpeed = 15.0f;
     public float rotationSpeed = 15.0f;
-    public float jumpForceModifier = 5.0f;
+    public float jumpForceModifier = 10.0f;
+    public float smoothTimeStop = 0.3F;
+    public float stopVelocitySpeed = 0.7f;
+    /* DEBUG Variables */
+    public float horizontalInput;
+    public float verticalInput;
+    public float playerCurrentSpeed;
+    public float AngularSpeed;
 
     private void Awake()
     {
+        physicsHelperPlayer = GetComponent<PhysicsHelperPlayer>();
         inputManager = GetComponent<InputManager>();
         playerRigidBody = GetComponent<Rigidbody>();
         /* This will scan the scene for the camera tagged 'main camera' */
@@ -32,7 +40,11 @@ public class PlayerLocomotion : MonoBehaviour
             isOnGround = false;
         }
 
-        playerCurrentSpeed = playerRigidBody.velocity;
+        //DEBUG
+        playerCurrentSpeed = playerRigidBody.velocity.magnitude;
+        AngularSpeed = playerRigidBody.angularVelocity.magnitude;
+        horizontalInput = inputManager.horizontalInput;
+        verticalInput = inputManager.verticalInput;
     }
 
     /* This handles all movement for our player */
@@ -41,6 +53,7 @@ public class PlayerLocomotion : MonoBehaviour
         HandleMovement();
         HandleRotation();
         HandleJumping();
+        BallStoppage();
     }
     //Handles general movement left/right and up/down
     private void HandleMovement() 
@@ -65,6 +78,8 @@ public class PlayerLocomotion : MonoBehaviour
         if (isOnGround)
         {
             playerRigidBody.AddForce(movementVelocity * movementSpeed);
+            //PhysicsHelperPlayer.PhysicsHelper.ApplyForceToReachVelocity(playerRigidBody, movementVelocity, movementSpeed);
+            //physicsHelperPlayer.PhysicsHelper.ApplyForceToReachVelocity(playerRigidBody, , ,);
         }
         //playerRigidBody.velocity = movementVelocity;
     }
@@ -112,12 +127,24 @@ public class PlayerLocomotion : MonoBehaviour
         */
     }
 
+    /* Brings the ball to a stop quicker. Player must not be touching 
+    controls */
+    private void BallStoppage()
+    {
+        if ((inputManager.verticalInput == 0 && inputManager.horizontalInput == 0) && playerCurrentSpeed <= stopVelocitySpeed)
+        {
+            Debug.Log("DEBUG: We're stopping the ball: " + playerCurrentSpeed.ToString());
+            Vector3 velocity = Vector3.zero;
+            //Debug.Log("DEBUG: It's time to bring the ball to a stop, hun: " + playerCurrentSpeed.ToString());
+            playerRigidBody.velocity = Vector3.zero;
+            playerRigidBody.angularVelocity = Vector3.zero;
+            //Vector3.SmoothDamp(playerRigidBody.velocity, Vector3.zero, ref velocity, smoothTimeStop);
+            //playerRigidBody.velocity.Set(0,0,0);
+        }
+    }
     /* Detect to see if the player has collided with the ground to prevent jumping */
     private void OnCollisionEnter(Collision collision)
     {
-        inputManager.jumpInput = true;
-        isOnGround = true;
-
         string collideTag = collision.gameObject.tag;
         Rigidbody otherRigidBody = collision.gameObject.GetComponent<Rigidbody>();
 
@@ -125,11 +152,17 @@ public class PlayerLocomotion : MonoBehaviour
         {
             case "A_Ball":
                 //Add Collision Force for balls
+                //otherRigidBody.AddForceAtPosition(,,,ForceMode.Impulse);
                 otherRigidBody.AddForce(Vector3.up * (jumpForceModifier * 10), ForceMode.Impulse);
                 //otherRigidBody.AddForceAtPosition();
                 break;
             case "Wall":
                 //Add collilsion force for walls
+                break;
+            case "Ground":
+                //Have character able to jump again
+                inputManager.jumpInput = true;
+                isOnGround = true;
                 break;
             default:
                 //Add nothing, collision not recognized
