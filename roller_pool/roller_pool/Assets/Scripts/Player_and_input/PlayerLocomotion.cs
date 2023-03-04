@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerLocomotion : MonoBehaviour
 {
+    public Vector3 playerCurrentSpeed;
     InputManager inputManager;
 
     public Vector3 moveDirection;
@@ -11,9 +12,9 @@ public class PlayerLocomotion : MonoBehaviour
 
     public Rigidbody playerRigidBody;
     public bool isOnGround = true;
-    public float movementSpeed = 5.0f;
+    public float movementSpeed = 8.0f;
     public float rotationSpeed = 15.0f;
-    public float jumpForceModifier = 1500.0f;
+    public float jumpForceModifier = 5.0f;
 
     private void Awake()
     {
@@ -30,6 +31,8 @@ public class PlayerLocomotion : MonoBehaviour
             playerRigidBody.AddForce(Vector3.up * jumpForceModifier, ForceMode.Impulse);
             isOnGround = false;
         }
+
+        playerCurrentSpeed = playerRigidBody.velocity;
     }
 
     /* This handles all movement for our player */
@@ -53,11 +56,16 @@ public class PlayerLocomotion : MonoBehaviour
         //All this does is keeps the direction the same, but puts the length to 1
         //moveDirection.Normalize();
         //We want our character to jump, to y is kept in
-        //moveDirection.y = 0;
+        moveDirection.y = 0;
         //moveDirection = moveDirection * movementSpeed;
 
         Vector3 movementVelocity = moveDirection;
-        playerRigidBody.AddForce(movementVelocity * movementSpeed);
+        
+        /* Only add force if the player is NOT in the air...*/
+        if (isOnGround)
+        {
+            playerRigidBody.AddForce(movementVelocity * movementSpeed);
+        }
         //playerRigidBody.velocity = movementVelocity;
     }
 
@@ -109,6 +117,24 @@ public class PlayerLocomotion : MonoBehaviour
     {
         inputManager.jumpInput = true;
         isOnGround = true;
+
+        string collideTag = collision.gameObject.tag;
+        Rigidbody otherRigidBody = collision.gameObject.GetComponent<Rigidbody>();
+
+        switch (collideTag)
+        {
+            case "A_Ball":
+                //Add Collision Force for balls
+                otherRigidBody.AddForce(Vector3.up * (jumpForceModifier * 10), ForceMode.Impulse);
+                //otherRigidBody.AddForceAtPosition();
+                break;
+            case "Wall":
+                //Add collilsion force for walls
+                break;
+            default:
+                //Add nothing, collision not recognized
+                break;
+        }
     }
 
 
