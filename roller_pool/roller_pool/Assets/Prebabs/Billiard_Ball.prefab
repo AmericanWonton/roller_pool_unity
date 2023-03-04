@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -2353860916629111018}
   m_Layer: 0
   m_Name: Billiard_Ball
-  m_TagString: Untagged
+  m_TagString: A_Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

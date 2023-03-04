@@ -147,7 +147,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 132185185}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.8229237, y: 17.19988, z: 20.565187}
+  m_LocalPosition: {x: -34.32292, y: 17.19988, z: 20.565187}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -325,6 +325,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Billiard_Ball (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 5320177775858243439, guid: 8267eff9ee7ceb34fad8f09c464d5f72, type: 3}
+      propertyPath: m_TagString
+      value: A_Ball
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8267eff9ee7ceb34fad8f09c464d5f72, type: 3}
 --- !u!4 &221126595 stripped
@@ -391,6 +395,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Billiard_Ball (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 5320177775858243439, guid: 8267eff9ee7ceb34fad8f09c464d5f72, type: 3}
+      propertyPath: m_TagString
+      value: A_Ball
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8267eff9ee7ceb34fad8f09c464d5f72, type: 3}
 --- !u!4 &242726988 stripped
@@ -456,6 +464,10 @@ PrefabInstance:
     - target: {fileID: 5320177775858243439, guid: 8267eff9ee7ceb34fad8f09c464d5f72, type: 3}
       propertyPath: m_Name
       value: Billiard_Ball (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5320177775858243439, guid: 8267eff9ee7ceb34fad8f09c464d5f72, type: 3}
+      propertyPath: m_TagString
+      value: A_Ball
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8267eff9ee7ceb34fad8f09c464d5f72, type: 3}
@@ -527,6 +539,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Billiard_Ball
       objectReference: {fileID: 0}
+    - target: {fileID: 5320177775858243439, guid: 8267eff9ee7ceb34fad8f09c464d5f72, type: 3}
+      propertyPath: m_TagString
+      value: A_Ball
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8267eff9ee7ceb34fad8f09c464d5f72, type: 3}
 --- !u!1001 &490108591
@@ -587,6 +603,10 @@ PrefabInstance:
     - target: {fileID: 5320177775858243439, guid: 8267eff9ee7ceb34fad8f09c464d5f72, type: 3}
       propertyPath: m_Name
       value: Billiard_Ball (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5320177775858243439, guid: 8267eff9ee7ceb34fad8f09c464d5f72, type: 3}
+      propertyPath: m_TagString
+      value: A_Ball
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8267eff9ee7ceb34fad8f09c464d5f72, type: 3}
@@ -783,6 +803,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Billiard_Ball (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 5320177775858243439, guid: 8267eff9ee7ceb34fad8f09c464d5f72, type: 3}
+      propertyPath: m_TagString
+      value: A_Ball
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8267eff9ee7ceb34fad8f09c464d5f72, type: 3}
 --- !u!4 &951935591 stripped
@@ -858,6 +882,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Billiard_Ball (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 5320177775858243439, guid: 8267eff9ee7ceb34fad8f09c464d5f72, type: 3}
+      propertyPath: m_TagString
+      value: A_Ball
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8267eff9ee7ceb34fad8f09c464d5f72, type: 3}
 --- !u!4 &1051216845 stripped
@@ -928,6 +956,10 @@ PrefabInstance:
     - target: {fileID: 5320177775858243439, guid: 8267eff9ee7ceb34fad8f09c464d5f72, type: 3}
       propertyPath: m_Name
       value: Billiard_Ball (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5320177775858243439, guid: 8267eff9ee7ceb34fad8f09c464d5f72, type: 3}
+      propertyPath: m_TagString
+      value: A_Ball
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8267eff9ee7ceb34fad8f09c464d5f72, type: 3}
@@ -1102,6 +1134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Billiard_Ball (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 5320177775858243439, guid: 8267eff9ee7ceb34fad8f09c464d5f72, type: 3}
+      propertyPath: m_TagString
+      value: A_Ball
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8267eff9ee7ceb34fad8f09c464d5f72, type: 3}
 --- !u!4 &1333341507 stripped
@@ -1168,6 +1204,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Billiard_Ball (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 5320177775858243439, guid: 8267eff9ee7ceb34fad8f09c464d5f72, type: 3}
+      propertyPath: m_TagString
+      value: A_Ball
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8267eff9ee7ceb34fad8f09c464d5f72, type: 3}
 --- !u!4 &1428325989 stripped
@@ -1228,7 +1268,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 559333661494327734, guid: 40b87421868720c4bbb50a6618a467f4, type: 3}
       propertyPath: m_Drag
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 559333661494327734, guid: 40b87421868720c4bbb50a6618a467f4, type: 3}
       propertyPath: m_Mass
@@ -1244,7 +1284,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2787017660442937600, guid: 40b87421868720c4bbb50a6618a467f4, type: 3}
       propertyPath: movementSpeed
-      value: 20
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2787017660442937600, guid: 40b87421868720c4bbb50a6618a467f4, type: 3}
       propertyPath: playerRigidBody
@@ -1358,6 +1398,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Billiard_Ball (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5320177775858243439, guid: 8267eff9ee7ceb34fad8f09c464d5f72, type: 3}
+      propertyPath: m_TagString
+      value: A_Ball
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8267eff9ee7ceb34fad8f09c464d5f72, type: 3}
 --- !u!1001 &1677508726
@@ -1418,6 +1462,10 @@ PrefabInstance:
     - target: {fileID: 5320177775858243439, guid: 8267eff9ee7ceb34fad8f09c464d5f72, type: 3}
       propertyPath: m_Name
       value: Billiard_Ball (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5320177775858243439, guid: 8267eff9ee7ceb34fad8f09c464d5f72, type: 3}
+      propertyPath: m_TagString
+      value: A_Ball
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8267eff9ee7ceb34fad8f09c464d5f72, type: 3}
@@ -1914,6 +1962,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Billiard_Ball (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5320177775858243439, guid: 8267eff9ee7ceb34fad8f09c464d5f72, type: 3}
+      propertyPath: m_TagString
+      value: A_Ball
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8267eff9ee7ceb34fad8f09c464d5f72, type: 3}
 --- !u!4 &2051878118 stripped
@@ -1980,6 +2032,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Billiard_Ball (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 5320177775858243439, guid: 8267eff9ee7ceb34fad8f09c464d5f72, type: 3}
+      propertyPath: m_TagString
+      value: A_Ball
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8267eff9ee7ceb34fad8f09c464d5f72, type: 3}
 --- !u!4 &2064585058 stripped
@@ -2045,6 +2101,10 @@ PrefabInstance:
     - target: {fileID: 5320177775858243439, guid: 8267eff9ee7ceb34fad8f09c464d5f72, type: 3}
       propertyPath: m_Name
       value: Billiard_Ball (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5320177775858243439, guid: 8267eff9ee7ceb34fad8f09c464d5f72, type: 3}
+      propertyPath: m_TagString
+      value: A_Ball
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8267eff9ee7ceb34fad8f09c464d5f72, type: 3}

@@ -21,7 +21,8 @@ public class PlayerManager : MonoBehaviour
     }
 
     /* We're using fixed update to handle Ridgidbodys...
-    it handles much nicer. It's a Unity specific rule... */
+    it handles much nicer. It's a Unity specific rule...
+    Phsycis handles better under this frame */
     private void FixedUpdate()
     {
         playerLocomotion.HandleAllMovement();
