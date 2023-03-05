@@ -7,19 +7,31 @@ public class JumpingManager : MonoBehaviour
 
     private List<GameObject> objectsCollided;
 
-
-    /* Count how many objects are entering this floor */
-    void OnTriggerEnter(Collider other)
+    void OnCollisionStay(Collision collision)
     {
-        Debug.Log("Object is on floor: " + other.gameObject.GetHashCode().ToString());
-        objectsCollided.Add(other.gameObject);
+        string collideTag = collision.gameObject.tag;
+        Rigidbody otherRigidBody = collision.gameObject.GetComponent<Rigidbody>();
+
+        if (collideTag == "Player_Ball")
+        {
+            PlayerLocomotion playerLocomotion = collision.gameObject.GetComponent<PlayerLocomotion>();
+            playerLocomotion.inputManager.jumpInput = true;
+            playerLocomotion.isOnGround = true;
+        }
     }
 
-    /* Remove object currently colliding; the player might have jumped or something */
-    void OnTriggerExit(Collider other)
+    void OnCollisionExit(Collision collision)
     {
-        Debug.Log("Object is in air: " + other.gameObject.GetHashCode().ToString());
-        objectsCollided.Remove(other.gameObject);
+        string collideTag = collision.gameObject.tag;
+        Rigidbody otherRigidBody = collision.gameObject.GetComponent<Rigidbody>();
+
+        if (collideTag == "Player_Ball")
+        {
+            Debug.Log("Player has jumped...");
+            PlayerLocomotion playerLocomotion = collision.gameObject.GetComponent<PlayerLocomotion>();
+            playerLocomotion.inputManager.jumpInput = false;
+            playerLocomotion.isOnGround = false;
+        }
     }
     
     // Start is called before the first frame update

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerLocomotion : MonoBehaviour
 {
-    InputManager inputManager;
+    public InputManager inputManager;
     PhysicsHelperPlayer physicsHelperPlayer;
 
     public Vector3 moveDirection;
@@ -38,9 +38,8 @@ public class PlayerLocomotion : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
         {
             playerRigidBody.AddForce(Vector3.up * jumpForceModifier, ForceMode.Impulse);
-            isOnGround = false;
         }
-
+        
         //DEBUG
         playerCurrentSpeed = playerRigidBody.velocity.magnitude;
         AngularSpeed = playerRigidBody.angularVelocity.magnitude;
@@ -92,7 +91,6 @@ public class PlayerLocomotion : MonoBehaviour
             //PhysicsHelperPlayer.PhysicsHelper.ApplyForceToReachVelocity(playerRigidBody, movementVelocity, movementSpeed);
             //physicsHelperPlayer.PhysicsHelper.ApplyForceToReachVelocity(playerRigidBody, , ,);
         }
-        //playerRigidBody.velocity = movementVelocity;
     }
 
     //Handles Rotation...not sure if needed for rollerpool
@@ -150,58 +148,6 @@ public class PlayerLocomotion : MonoBehaviour
         }
     }
     /* Detect to see if the player has collided with the ground to prevent jumping */
-    private void OnCollisionEnter(Collision collision)
-    {
-        string collideTag = collision.gameObject.tag;
-        Rigidbody otherRigidBody = collision.gameObject.GetComponent<Rigidbody>();
-
-        switch (collideTag)
-        {
-            case "A_Ball":
-                //Add Collision Force for balls
-                //otherRigidBody.AddForceAtPosition(,,,ForceMode.Impulse);
-                otherRigidBody.AddForce(Vector3.up * (jumpForceModifier * 10), ForceMode.Impulse);
-                //otherRigidBody.AddForceAtPosition();
-                break;
-            case "Wall":
-                //Add collilsion force for walls
-                break;
-            case "Ground":
-                Debug.Log("Player has returned to the ground.");
-                //Have character able to jump again
-                inputManager.jumpInput = true;
-                isOnGround = true;
-                break;
-            default:
-                //Add nothing, collision not recognized
-                break;
-        }
-    }
-
-    /* This should be called when the character jumps */
-    private void OnCollisionExit(Collision collision)
-    {
-        string collideTag = collision.gameObject.tag;
-        Rigidbody otherRigidBody = collision.gameObject.GetComponent<Rigidbody>();
-
-        switch (collideTag)
-        {
-            case "A_Ball":
-                //Add Collision Force for balls
-
-                break;
-            case "Wall":
-                //Add collilsion force for walls
-                break;
-            case "Ground":
-                Debug.Log("Player has left the ground.");
-                //Have character stop jumping, they have left the ground
-                inputManager.jumpInput = false;
-                isOnGround = false;
-                break;
-            default:
-                //Add nothing, collision not recognized
-                break;
-        }
-    }
+    
+    
 }

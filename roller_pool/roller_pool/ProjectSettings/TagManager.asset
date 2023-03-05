@@ -6,6 +6,7 @@ TagManager:
   tags:
   - A_Ball
   - Ground
+  - Player_Ball
   layers:
   - Default
   - TransparentFX
