@@ -12,6 +12,7 @@ public class PlayerLocomotion : MonoBehaviour
 
     public Rigidbody playerRigidBody;
     public bool isOnGround = true;
+    private float maxCharacterVelocity = 30.0f;
     public float movementSpeed = 15.0f;
     public float rotationSpeed = 15.0f;
     public float jumpForceModifier = 10.0f;
@@ -50,11 +51,21 @@ public class PlayerLocomotion : MonoBehaviour
     /* This handles all movement for our player */
     public void HandleAllMovement()
     {
+        KeepVelocityTame();
         HandleMovement();
         HandleRotation();
         HandleJumping();
         BallStoppage();
     }
+
+    //Checks to see if ball is on the ground 
+
+    //Keeps the velocity below a certain speed for this object
+    private void KeepVelocityTame()
+    {
+        physicsHelperPlayer.objectLerpSpeed(playerRigidBody, maxCharacterVelocity);
+    }
+
     //Handles general movement left/right and up/down
     private void HandleMovement() 
     {
@@ -133,13 +144,9 @@ public class PlayerLocomotion : MonoBehaviour
     {
         if ((inputManager.verticalInput == 0 && inputManager.horizontalInput == 0) && playerCurrentSpeed <= stopVelocitySpeed)
         {
-            Debug.Log("DEBUG: We're stopping the ball: " + playerCurrentSpeed.ToString());
             Vector3 velocity = Vector3.zero;
-            //Debug.Log("DEBUG: It's time to bring the ball to a stop, hun: " + playerCurrentSpeed.ToString());
             playerRigidBody.velocity = Vector3.zero;
             playerRigidBody.angularVelocity = Vector3.zero;
-            //Vector3.SmoothDamp(playerRigidBody.velocity, Vector3.zero, ref velocity, smoothTimeStop);
-            //playerRigidBody.velocity.Set(0,0,0);
         }
     }
     /* Detect to see if the player has collided with the ground to prevent jumping */
@@ -160,6 +167,7 @@ public class PlayerLocomotion : MonoBehaviour
                 //Add collilsion force for walls
                 break;
             case "Ground":
+                Debug.Log("Player has returned to the ground.");
                 //Have character able to jump again
                 inputManager.jumpInput = true;
                 isOnGround = true;
@@ -170,5 +178,30 @@ public class PlayerLocomotion : MonoBehaviour
         }
     }
 
+    /* This should be called when the character jumps */
+    private void OnCollisionExit(Collision collision)
+    {
+        string collideTag = collision.gameObject.tag;
+        Rigidbody otherRigidBody = collision.gameObject.GetComponent<Rigidbody>();
 
+        switch (collideTag)
+        {
+            case "A_Ball":
+                //Add Collision Force for balls
+
+                break;
+            case "Wall":
+                //Add collilsion force for walls
+                break;
+            case "Ground":
+                Debug.Log("Player has left the ground.");
+                //Have character stop jumping, they have left the ground
+                inputManager.jumpInput = false;
+                isOnGround = false;
+                break;
+            default:
+                //Add nothing, collision not recognized
+                break;
+        }
+    }
 }
