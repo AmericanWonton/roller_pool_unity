@@ -150,7 +150,6 @@ public class PlayerLocomotion : MonoBehaviour
             playerRigidBody.angularVelocity = Vector3.zero;
         }
     }
-    /* Detect to see if the player has collided with the ground to prevent jumping */
     
     
 }
