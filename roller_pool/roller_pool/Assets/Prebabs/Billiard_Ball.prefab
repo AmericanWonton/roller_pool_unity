@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5320177775858243437}
   - component: {fileID: 5320177775858243438}
   - component: {fileID: -2353860916629111018}
+  - component: {fileID: -5422919797085736856}
   m_Layer: 0
   m_Name: Billiard_Ball
   m_TagString: A_Ball
@@ -114,3 +115,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-5422919797085736856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5320177775858243439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 170e51bb08d6931428d843c54fece026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -18,6 +18,9 @@ public class PlayerLocomotion : MonoBehaviour
     public float jumpForceModifier = 10.0f;
     public float smoothTimeStop = 0.3F;
     public float stopVelocitySpeed = 0.7f;
+
+    public float forceMultiplier = 0.01f;
+
     /* DEBUG Variables */
     public float horizontalInput;
     public float verticalInput;
