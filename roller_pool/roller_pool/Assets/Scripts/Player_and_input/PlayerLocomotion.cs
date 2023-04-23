@@ -18,6 +18,7 @@ public class PlayerLocomotion : MonoBehaviour
     public float jumpForceModifier = 10.0f;
     public float smoothTimeStop = 0.3F;
     public float stopVelocitySpeed = 5.0f;
+    public float angularDragNormal = 0.05f;
 
     public float forceMultiplier = 0.01f;
     private PhysicMaterial playerPhysicalMaterial;
@@ -151,7 +152,14 @@ public class PlayerLocomotion : MonoBehaviour
     controls */
     private void BallStoppage()
     {
-        
+        if ((inputManager.verticalInput == 0 && inputManager.horizontalInput == 0) && (playerCurrentSpeed <= stopVelocitySpeed) && (playerCurrentSpeed > 0.0f))
+        {
+            /* Slow the ball to a stop with friction */
+            GetComponent<Rigidbody>().angularDrag = 10.0f;
+        } else {
+            //Set ball dynamic friction back to what it was after stopping it
+            GetComponent<Rigidbody>().angularDrag = angularDragNormal;
+        }
     }
 
 

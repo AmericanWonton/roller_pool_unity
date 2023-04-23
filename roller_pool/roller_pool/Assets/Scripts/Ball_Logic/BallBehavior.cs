@@ -10,6 +10,7 @@ public class BallBehavior : MonoBehaviour
     private float ballAngularSpeed;
     public float stopVelocitySpeed = 2.5f;
     public float ballDynamicFriction = 0.6f;
+    public float angularDragNormal = 0.05f;
     private Rigidbody ballRigidBody;
 
     private Collider theCollider;
@@ -53,7 +54,14 @@ public class BallBehavior : MonoBehaviour
     /* Prevents the ball from rolling forever */
     private void BallStoppage()
     {
-        
+        if ((ballCurrentSpeed <= stopVelocitySpeed) && (ballCurrentSpeed > 0.0f))
+        {
+            /* Slow the ball to a stop with friction */
+            GetComponent<Rigidbody>().angularDrag = 10.0f;
+        } else {
+            //Set ball dynamic friction back to what it was after stopping it
+            GetComponent<Rigidbody>().angularDrag = angularDragNormal;
+        }
     }
 
 }
