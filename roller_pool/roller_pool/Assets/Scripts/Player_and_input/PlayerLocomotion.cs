@@ -17,24 +17,32 @@ public class PlayerLocomotion : MonoBehaviour
     public float rotationSpeed = 15.0f;
     public float jumpForceModifier = 10.0f;
     public float smoothTimeStop = 0.3F;
-    public float stopVelocitySpeed = 0.7f;
+    public float stopVelocitySpeed = 5.0f;
 
     public float forceMultiplier = 0.01f;
+    private PhysicMaterial playerPhysicalMaterial;
+    public float playerDynamicFriction = 0.6f;
 
     /* DEBUG Variables */
     public float horizontalInput;
     public float verticalInput;
     public float playerCurrentSpeed;
     public float AngularSpeed;
+    public float DecreaseSpeedAmount = 0.1f;
+    public float DecreaseSpeedTime = 5.5f;
 
     private void Awake()
     {
         physicsHelperPlayer = GetComponent<PhysicsHelperPlayer>();
         inputManager = GetComponent<InputManager>();
         playerRigidBody = GetComponent<Rigidbody>();
+        playerPhysicalMaterial = GetComponent<SphereCollider>().material;
         /* This will scan the scene for the camera tagged 'main camera' */
         cameraObject = Camera.main.transform;
+        
     }
+
+    
 
     void Update()
     {
@@ -143,13 +151,8 @@ public class PlayerLocomotion : MonoBehaviour
     controls */
     private void BallStoppage()
     {
-        if ((inputManager.verticalInput == 0 && inputManager.horizontalInput == 0) && playerCurrentSpeed <= stopVelocitySpeed)
-        {
-            Vector3 velocity = Vector3.zero;
-            playerRigidBody.velocity = Vector3.zero;
-            playerRigidBody.angularVelocity = Vector3.zero;
-        }
+        
     }
-    
-    
+
+
 }

@@ -9,15 +9,18 @@ public class BallBehavior : MonoBehaviour
     public float ballCurrentSpeed;
     private float ballAngularSpeed;
     public float stopVelocitySpeed = 2.5f;
+    public float ballDynamicFriction = 0.6f;
     private Rigidbody ballRigidBody;
 
+    private Collider theCollider;
+
     /* Debug values */
-    public 
     
     // Start is called before the first frame update
     void Start()
     {
         ballRigidBody = GetComponent<Rigidbody>();
+        theCollider = GetComponent<Collider>();
     }
 
     // Update is called once per frame
@@ -50,15 +53,7 @@ public class BallBehavior : MonoBehaviour
     /* Prevents the ball from rolling forever */
     private void BallStoppage()
     {
-        if (ballCurrentSpeed <= stopVelocitySpeed)
-        {
-            Debug.Log("DEBUG: We are slowing this object...");
-            Vector3 ballCurrentVelocity = ballRigidBody.velocity;
-            Vector3 ballCurrentAngularVelocity = ballRigidBody.angularVelocity;
-            
-            ballRigidBody.velocity = Vector3.SmoothDamp(ballRigidBody.velocity, Vector3.zero, ref ballCurrentVelocity, 0.0f);
-            ballRigidBody.angularVelocity = Vector3.SmoothDamp(ballRigidBody.angularVelocity, Vector3.zero, ref ballCurrentAngularVelocity, 0.0f);
-        }
+        
     }
 
 }

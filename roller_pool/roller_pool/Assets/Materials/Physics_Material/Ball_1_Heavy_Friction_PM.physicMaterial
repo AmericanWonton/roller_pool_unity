@@ -6,9 +6,9 @@ PhysicMaterial:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Pool_Floor_Material_PM
-  dynamicFriction: 5.85
-  staticFriction: 5.4
-  bounciness: 0.3
+  m_Name: Ball_1_Heavy_Friction_PM
+  dynamicFriction: 8
+  staticFriction: 8
+  bounciness: 0
   frictionCombine: 0
   bounceCombine: 0

@@ -27,7 +27,7 @@ public class JumpingManager : MonoBehaviour
 
         if (collideTag == "Player_Ball")
         {
-            Debug.Log("Player has jumped...");
+            //Debug.Log("Player has jumped...");
             PlayerLocomotion playerLocomotion = collision.gameObject.GetComponent<PlayerLocomotion>();
             playerLocomotion.inputManager.jumpInput = false;
             playerLocomotion.isOnGround = false;
