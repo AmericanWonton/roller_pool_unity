@@ -1524,7 +1524,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 559333661494327734, guid: 40b87421868720c4bbb50a6618a467f4, type: 3}
       propertyPath: m_Mass
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 559333661494327734, guid: 40b87421868720c4bbb50a6618a467f4, type: 3}
       propertyPath: m_Interpolate
@@ -1540,7 +1540,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2787017660442937600, guid: 40b87421868720c4bbb50a6618a467f4, type: 3}
       propertyPath: movementSpeed
-      value: 30
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 2787017660442937600, guid: 40b87421868720c4bbb50a6618a467f4, type: 3}
       propertyPath: playerRigidBody
@@ -1548,7 +1548,7 @@ PrefabInstance:
       objectReference: {fileID: 1012923347}
     - target: {fileID: 2787017660442937600, guid: 40b87421868720c4bbb50a6618a467f4, type: 3}
       propertyPath: jumpForceModifier
-      value: 7
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2787017660442937600, guid: 40b87421868720c4bbb50a6618a467f4, type: 3}
       propertyPath: stopVelocitySpeed
