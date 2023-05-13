@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2059334862343319561}
   - component: {fileID: 6334485022725517823}
   - component: {fileID: 3742041702395089942}
+  - component: {fileID: 1260266096970806123}
   m_Layer: 0
   m_Name: Wall_Collider_Horizontal_1
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3147682553241013085}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -11.899822, y: 8.376839, z: 0.7223419}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalScale: {x: 10, y: 10, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -97,3 +98,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1260266096970806123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3147682553241013085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 926338caf24461d469560445688d22a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wallDirection: 
+  movementDistance: 50
+  movementSpeed: 5
+  min: 2
+  max: 3
