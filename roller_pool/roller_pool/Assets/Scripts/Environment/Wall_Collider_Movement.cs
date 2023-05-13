@@ -4,22 +4,27 @@ using UnityEngine;
 
 public class Wall_Collider_Movement : MonoBehaviour
 {
-    public string wallDirection;
-    private Vector3 startingPosition;
+    public string wallDirection = "horizontal";
 
     public float movementDistance = 20.0f;
     public float movementSpeed = 5.0f;
-    private string currentDirectionMoving = "left";
-    public float min=2f;
-    public float max=3f;
+    public float minDistanceX=2f;
+    public float maxDistanceX=3f;
+    public float minDistanceY=2f;
+    public float maxDistanceY=3f;
+    public float minDistanceZ=2f;
+    public float maxDistanceZ=3f;
 
     // Start is called before the first frame update
     void Start()
     {
         //Get the objects current starting position
-        startingPosition = transform.position;
-        min=transform.position.x;
-        max=transform.position.x + movementDistance;
+        minDistanceX=transform.position.x;
+        maxDistanceX=transform.position.x + movementDistance;
+        minDistanceY=transform.position.y;
+        maxDistanceY=transform.position.y + movementDistance;
+        minDistanceZ=transform.position.z;
+        maxDistanceZ=transform.position.z + movementDistance;
     }
 
     // Update is called once per frame
@@ -30,9 +35,8 @@ public class Wall_Collider_Movement : MonoBehaviour
 
     void FixedUpdate() 
     {
-        //WallMovement();
-        //transform.position = new Vector3(Mathf.PingPong(Time.time * movementSpeed, movementDistance), startingPosition.y, startingPosition.z);
-        transform.position =new Vector3((Mathf.PingPong(Time.time* movementSpeed,max-min)+min), transform.position.y, transform.position.z);
+        WallMovement();
+        
     }
 
     /* This controls the movement of the wall, once per frame. 
@@ -44,18 +48,21 @@ public class Wall_Collider_Movement : MonoBehaviour
 
     void WallMovement()
     {
-        Debug.Log(startingPosition.ToString());
 
         switch (wallDirection.ToLower())
         {
             case "horizontal":
-
+                MoveLeftRight();
                 break;
             case "vertical":
-
+                MoveUpDown();
+                break;
+            case "forward":
+                MoveForwardBack();
                 break;
             default: 
                 //Defaults to horizontal logic
+                MoveLeftRight();
                 break;
         }
     }
@@ -63,27 +70,18 @@ public class Wall_Collider_Movement : MonoBehaviour
     //Move the object left and right repeatedly
     void MoveLeftRight()
     {
-        if (currentDirectionMoving.ToLower() == "left")
-        {
-            if (transform.position.x >= startingPosition.x + movementDistance)
-            {
-                currentDirectionMoving = "right";
-            } else 
-            {
-                Vector3 newPosition = new Vector3(transform.position.x + 1.0f, transform.position.y, transform.position.z);
-                transform.Translate(newPosition * Time.deltaTime * movementSpeed);
-            }
-        } else 
-        {
-            if (transform.position.x >= startingPosition.x + movementDistance)
-            {
-                currentDirectionMoving = "right";
-            } else 
-            {
-                Vector3 newPosition = new Vector3(transform.position.x + 1.0f, transform.position.y, transform.position.z);
-                transform.Translate(newPosition * Time.deltaTime * movementSpeed);
-            }
-        }
+        transform.position = new Vector3((Mathf.PingPong(Time.time * movementSpeed,maxDistanceX-minDistanceX)+minDistanceX), transform.position.y, transform.position.z);
     }
 
+    //Move the object up and down, repeatedly
+    void MoveUpDown()
+    {
+        transform.position = new Vector3(transform.position.x, (Mathf.PingPong(Time.time * movementSpeed,maxDistanceY-minDistanceY)+minDistanceY), transform.position.z);
+    }
+
+    //Move the object forward and backward, repeatedly
+    void MoveForwardBack()
+    {
+        transform.position = new Vector3(transform.position.x, transform.position.y, (Mathf.PingPong(Time.time * movementSpeed,maxDistanceZ-minDistanceZ)+minDistanceZ));
+    }
 }
