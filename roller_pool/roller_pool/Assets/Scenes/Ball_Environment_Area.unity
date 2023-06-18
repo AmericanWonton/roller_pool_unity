@@ -174,6 +174,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8610164412745909326, guid: 129cbabf8a07f634c8d50c0e5c518222, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 3721807c67a21b54e88e9f4b50dc74f5, type: 2}
     - target: {fileID: 8610164412745909327, guid: 129cbabf8a07f634c8d50c0e5c518222, type: 3}
       propertyPath: m_Name
       value: LaunchPad
@@ -341,6 +345,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1898762227078629938, guid: 503a109a1f168d444991cc791282b54f, type: 3}
+      propertyPath: airSpeedDecrease
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2679063365128671025, guid: 503a109a1f168d444991cc791282b54f, type: 3}
       propertyPath: m_Name
       value: Player 1
