@@ -12,7 +12,6 @@ public class Bumper : MonoBehaviour
         public Vector3 ContactVelocity;
     }
 
-    [SerializeField] float LaunchDelay = 0.1f;
     [SerializeField] float LaunchForce = 5.0f;
     [SerializeField] float BallLaunchForce = 100.0f;
     [SerializeField] ForceMode LaunchMode = ForceMode.Impulse;
