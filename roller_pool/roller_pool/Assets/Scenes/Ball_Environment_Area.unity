@@ -679,7 +679,7 @@ GameObject:
   - component: {fileID: 1419626647}
   m_Layer: 0
   m_Name: DEBUG_Cube_Fall
-  m_TagString: Untagged
+  m_TagString: A_Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -907,6 +907,10 @@ PrefabInstance:
       propertyPath: wallDirection
       value: horizontal
       objectReference: {fileID: 0}
+    - target: {fileID: 1260266096970806123, guid: 47c7b7664211e8547968b3a0adb274a9, type: 3}
+      propertyPath: movementDistance
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 3147682553241013085, guid: 47c7b7664211e8547968b3a0adb274a9, type: 3}
       propertyPath: m_Name
       value: Wall_Collider_Horizontal_1
@@ -921,7 +925,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4791080169909717123, guid: 47c7b7664211e8547968b3a0adb274a9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.42
+      value: 6.17
       objectReference: {fileID: 0}
     - target: {fileID: 4791080169909717123, guid: 47c7b7664211e8547968b3a0adb274a9, type: 3}
       propertyPath: m_LocalPosition.z

@@ -20,41 +20,31 @@ public class Bumper : MonoBehaviour
     [SerializeField] float ImpactVelocityScale = 0.05f;
     [SerializeField] float MaxDistortionWeight = 0.25f;
 
-    Dictionary<Rigidbody, BumperPadTarget> Targets = new Dictionary<Rigidbody, BumperPadTarget>();
-
-    List<Rigidbody> TargetsToClear = new List<Rigidbody>();
-
 
     private void FixedUpdate()
     {
-        //Check for targets to launch
-        float thresholdTime = Time.timeSinceLevelLoad - LaunchDelay;
-        foreach(var kvp in Targets)
-        {
-            if (kvp.Value.ContactTime >= thresholdTime)
-            {
-                Launch(kvp.Key, kvp.Value.ContactVelocity);
-                TargetsToClear.Add(kvp.Key);
-            }
-        }
 
-        foreach(var target in TargetsToClear)
-        {
-            Targets.Remove(target);
-            TargetsToClear.Clear();
-        }
     }
 
 
     /* Look for collision object and send the object back in the opposite direction */
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log($"{collision.gameObject.name}");
-        Rigidbody rb;
-        if (collision.gameObject.TryGetComponent<Rigidbody>(out rb))
+        string collisionTag = collision.gameObject.tag;
+
+        switch (collisionTag.ToUpper())
         {
-            Targets[rb] = new BumperPadTarget() { ContactTime = Time.timeSinceLevelLoad, ContactVelocity = collision.relativeVelocity} ;
+            case "PLAYER_BALL":
+                Launch(collision.rigidbody, collision.relativeVelocity, collisionTag);
+                break;
+            case "A_BALL":
+                Launch(collision.rigidbody, collision.relativeVelocity, collisionTag);
+                break;
+            default:
+                //do nothing
+                break;
         }
+
     }
 
     void OnCollisionExit(Collision collision)
@@ -62,7 +52,7 @@ public class Bumper : MonoBehaviour
 
     }
 
-    void Launch(Rigidbody targetRB, Vector3 contactVelocity)
+    void Launch(Rigidbody targetRB, Vector3 contactVelocity, string theTag)
     {
         Vector3 launchVector = transform.up;
 
@@ -81,12 +71,17 @@ public class Bumper : MonoBehaviour
             launchVector *= Mathf.Min(ImpactVelocityScaleMax, 1f + Mathf.Abs(contactProjection * ImpactVelocityScale));
         }
 
-        if (targetRB.CompareTag("Player_Ball"))
+        switch (theTag.ToUpper())
         {
-            targetRB.AddForce(launchVector * BallLaunchForce, LaunchMode);
-        } else 
-        {
-            targetRB.AddForce(launchVector* LaunchForce, LaunchMode);
+            case "PLAYER_BALL":
+                targetRB.AddForce(launchVector * BallLaunchForce, LaunchMode);
+                break;
+            case "A_BALL":
+                targetRB.AddForce(launchVector * LaunchForce, LaunchMode);
+                break;
+            default:
+                //do nothing
+                break;
         }
     }
 }
