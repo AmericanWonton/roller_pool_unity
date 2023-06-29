@@ -23,6 +23,7 @@ public class PlayerLocomotion : MonoBehaviour
     public float forceMultiplier = 0.01f;
     private PhysicMaterial playerPhysicalMaterial;
     public float playerDynamicFriction = 0.6f;
+    public float airSpeedDecrease = 5.0f;
 
     /* DEBUG Variables */
     public float horizontalInput;
@@ -96,12 +97,13 @@ public class PlayerLocomotion : MonoBehaviour
 
         Vector3 movementVelocity = moveDirection;
         
-        /* Only add force if the player is NOT in the air...*/
+        /* Add a lessened amount of force if player is in the air; if not, make it normal force*/
         if (isOnGround)
         {
             playerRigidBody.AddForce(movementVelocity * movementSpeed);
-            //PhysicsHelperPlayer.PhysicsHelper.ApplyForceToReachVelocity(playerRigidBody, movementVelocity, movementSpeed);
-            //physicsHelperPlayer.PhysicsHelper.ApplyForceToReachVelocity(playerRigidBody, , ,);
+        } else {
+            float newMovementSpeed = movementSpeed / airSpeedDecrease;
+            playerRigidBody.AddForce(movementVelocity * newMovementSpeed);
         }
     }
 
