@@ -17,7 +17,7 @@ public class CameraManager : MonoBehaviour
     public float cameraCollisionOffset = 0.4f; //How much the camera will jump off of objects it's colliding with
     public float minimumCollisionOffset = 0.1f;
     public float cameraCollisionRadius = 0.1f;
-    public float cameraFollowSpeed = 0.5f;
+    public float cameraFollowSpeed = 0.1f;
     public float cameraLookSpeed = 2.0f;
     public float cameraPivotSpeed = 2.0f;
 
@@ -50,17 +50,11 @@ public class CameraManager : MonoBehaviour
         Used to move something 'softly' from one location to another...
         like a camera to a player. So, every frame, our this will be called to move our camera to our player's position
         */
-        /*
-        Vector3 targetPosition = Vector3.SmoothDamp
-        (transform.position, targetTransform.position, ref cameraFollowVelocity, cameraFollowSpeed);
-        */
         Vector3 adjusted_targetTransform = new Vector3(targetTransform.position.x, targetTransform.position.y, (targetTransform.position.z));
         Vector3 targetPosition = Vector3.SmoothDamp
         (transform.position, adjusted_targetTransform, ref cameraFollowVelocity, cameraFollowSpeed);
 
         transform.position = targetPosition;
-
-        //transform.position = new Vector3(targetPosition.x, targetPosition.y, (targetPosition.z + 0.5f));
     }
 
     /* used for rotating the camera */
