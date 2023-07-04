@@ -9,6 +9,7 @@ public class Portal : MonoBehaviour
     public bool isActive = true;
 
     public float teleportDistance = 5.0f;
+    public float pushStrength = 5.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -33,14 +34,9 @@ public class Portal : MonoBehaviour
 
         theGameObject.transform.position = newSpawnPosition;
         theGameObject.transform.rotation = OtherPortal.transform.rotation;
-        theGameObject.GetComponent<Rigidbody>().velocity.Set(playerVelocity.x, playerVelocity.y, playerVelocity.z);
+        float playerMagnitude = theGameObject.GetComponent<Rigidbody>().velocity.magnitude;
+        theGameObject.GetComponent<Rigidbody>().AddForce((theGameObject.transform.forward * (pushStrength * playerMagnitude)), ForceMode.Acceleration);
 
-        Debug.Log("DEBUG: theVelocity is here: " + playerVelocity);
-        /*
-        Debug.Log("DEBUG: theForward here: " + theForward);
-        Debug.Log("DEBUG: thePosition here: " + thePosition);
-        Debug.Log("DEBUG: Teleporting here: " + newSpawnPosition);
-        */
     }
 
     void OnCollisionEnter(Collision collision)
