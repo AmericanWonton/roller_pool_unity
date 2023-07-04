@@ -97,7 +97,7 @@ public class PlayerLocomotion : MonoBehaviour
 
         Vector3 movementVelocity = moveDirection;
         
-        /* Add a lessened amount of force if player is in the air; if not, make it normal force*/
+        /* Add a lessened amount of force if player is in the air; if not, make it normal force */
         if (isOnGround)
         {
             playerRigidBody.AddForce(movementVelocity * movementSpeed);
